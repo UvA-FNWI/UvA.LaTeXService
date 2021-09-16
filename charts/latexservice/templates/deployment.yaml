@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: latexservice
+  namespace: "{{ .Release.Namespace }}"
+spec:
+  selector:
+    matchLabels:
+      app: latexservice
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: latexservice
+    spec:
+      containers:
+        - name: latexservice
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

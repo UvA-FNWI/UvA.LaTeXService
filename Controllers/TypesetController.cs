@@ -16,6 +16,8 @@ namespace UvA.LaTeXService.Controllers
         static string Folder = "/tmp";
 
         [HttpPost]
+        [DisableRequestSizeLimit]
+        [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue, ValueLengthLimit = int.MaxValue)]
         public ActionResult Post(IList<IFormFile> files)
         {
             foreach (var f in files)

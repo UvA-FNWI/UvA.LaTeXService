@@ -32,6 +32,9 @@ namespace UvA.LaTeXService
 
             app.UseRouting();
 
+            var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
+            logger.LogInformation("Running LaTeXService 0.2.2");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
